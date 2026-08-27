@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Гига Писарь: диктовка голосом для macOS</title>
+<meta name="description" content="Зажми правый ⌘, скажи, отпусти. Текст уже у курсора. Русская диктовка на модели GigaAM v3, целиком на твоём маке: офлайн, бесплатно, открытый код.">
+<meta property="og:title" content="Гига Писарь: диктовка голосом для macOS">
+<meta property="og:description" content="Зажми. Скажи. Отправляй. Русская диктовка на модели GigaAM v3, целиком на твоём маке.">
+<meta name="theme-color" content="#178a3c">
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%230d1512'/%3E%3Crect%20x='10'%20y='26'%20width='7'%20height='16'%20rx='3.5'%20fill='%23a8e063'/%3E%3Crect%20x='21'%20y='16'%20width='7'%20height='34'%20rx='3.5'%20fill='%237cc93f'/%3E%3Crect%20x='32'%20y='8'%20width='7'%20height='48'%20rx='3.5'%20fill='%231fa03a'/%3E%3Crect%20x='43'%20y='20'%20width='7'%20height='26'%20rx='3.5'%20fill='%2300a08c'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;700;800&display=swap">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Onest', 'Helvetica Neue', Arial, sans-serif; background: #f6f9f6; color: #10231a; }
+  a { color: #178a3c; text-decoration: none; }
+  a:hover { color: #0d5f28; text-decoration: underline; }
+  .wrap { max-width: 1220px; margin: 0 auto; padding: 0 24px; }
+  .grad-text { background: linear-gradient(100deg, #7cc93f, #1fa03a, #00a08c); -webkit-background-clip: text; background-clip: text; color: transparent; }
+
+  header { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; }
+  .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 20px; letter-spacing: -0.01em; color: #10231a; }
+  .logo:hover { text-decoration: none; }
+  .logo-badge { width: 42px; height: 42px; border-radius: 12px; background: #0d1512; display: flex; align-items: center; justify-content: center; }
+  nav { display: flex; gap: 30px; font-size: 15px; font-weight: 500; }
+
+  .hero { display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 84px; }
+  .pill { display: inline-flex; align-items: center; font-size: 13.5px; font-weight: 600; color: #178a3c; background: #e4f3e6; border-radius: 999px; padding: 7px 16px; }
+  h1 { font-size: clamp(44px, 7vw, 84px); line-height: 1.06; font-weight: 800; letter-spacing: -0.03em; margin: 26px 0 0 0; }
+  .sub { font-size: clamp(16.5px, 2vw, 21px); line-height: 1.5; color: #3d5548; max-width: 680px; margin: 24px 0 0 0; }
+  .cta-row { display: flex; align-items: center; gap: 18px; margin-top: 36px; flex-wrap: wrap; justify-content: center; }
+  .cta { display: inline-flex; align-items: center; height: 56px; padding: 0 32px; border-radius: 14px; background: linear-gradient(100deg, #2ab54a, #178a3c); color: #ffffff; font-size: 17px; font-weight: 700; box-shadow: 0 10px 24px rgba(23, 138, 60, 0.28); }
+  .cta:hover { color: #ffffff; text-decoration: none; filter: brightness(1.06); }
+
+  @keyframes sway { 0% { transform: scaleY(0.72); } 50% { transform: scaleY(1); } 100% { transform: scaleY(0.72); } }
+  .wave { display: flex; align-items: center; gap: 7px; height: 140px; margin-top: 56px; }
+  .wave i { display: block; width: 10px; border-radius: 6px; animation: sway 1.6s ease-in-out infinite; }
+
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-top: 80px; }
+  .card { background: #ffffff; border-radius: 20px; padding: 32px; box-shadow: 0 2px 14px rgba(16, 35, 26, 0.06); }
+  .card h3 { font-size: 19px; font-weight: 700; margin: 0 0 10px 0; }
+  .card p { font-size: 15.5px; line-height: 1.55; color: #3d5548; margin: 0; }
+  .card.dark { background: #0d1512; color: #eaf5ec; }
+  .card.dark p { color: #a9c4af; }
+  .card .art { height: 52px; margin-bottom: 14px; display: flex; align-items: center; gap: 4px; }
+  .keycap { display: inline-flex; align-items: center; justify-content: center; width: 66px; height: 52px; border: 1.5px solid #d6e4d8; border-bottom-width: 4px; border-radius: 12px; background: #fbfdfb; font-size: 22px; font-weight: 700; }
+  .minibar { display: block; width: 7px; border-radius: 4px; }
+  .typefield { display: flex; align-items: center; border: 1.5px solid #d6e4d8; border-radius: 10px; background: #fbfdfb; padding: 10px 14px; font-size: 15px; }
+  @keyframes caret { 0% { opacity: 1; } 49% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 0; } }
+  .caret { display: inline-block; width: 2px; height: 18px; background: #178a3c; margin-left: 2px; animation: caret 1.1s step-start infinite; }
+
+  .server { margin-top: 26px; background: #ffffff; border: 1.5px solid #d6e4d8; border-radius: 20px; padding: 30px 36px; display: flex; align-items: center; justify-content: space-between; gap: 36px; }
+  .server-left { display: flex; align-items: center; gap: 22px; }
+  .term { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 15px; background: #0d1512; color: #7cc93f; border-radius: 10px; padding: 12px 18px; white-space: nowrap; }
+  .server h3 { font-size: 18px; font-weight: 700; margin: 0; }
+  .server p { font-size: 15px; line-height: 1.5; color: #3d5548; margin: 4px 0 0 0; }
+  .btn-outline { flex-shrink: 0; display: inline-flex; align-items: center; height: 46px; padding: 0 24px; border-radius: 12px; border: 1.5px solid #178a3c; color: #178a3c; font-size: 15px; font-weight: 700; }
+
+  .enth { margin-top: 84px; background: linear-gradient(115deg, #123322, #0d1512); border-radius: 26px; padding: 56px 64px; display: flex; align-items: center; justify-content: space-between; gap: 48px; }
+  .enth h2 { font-size: clamp(24px, 3vw, 34px); font-weight: 800; color: #ffffff; letter-spacing: -0.02em; line-height: 1.15; margin: 0; }
+  .enth p { font-size: 16.5px; line-height: 1.6; color: #a9c4af; margin: 16px 0 0 0; max-width: 640px; }
+  .enth-links { display: flex; flex-direction: column; gap: 12px; flex-shrink: 0; }
+  .btn-white { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 26px; border-radius: 12px; background: #ffffff; color: #10231a; font-size: 15px; font-weight: 700; }
+  .btn-white:hover { color: #10231a; text-decoration: none; filter: brightness(0.95); }
+  .btn-ghost { display: inline-flex; align-items: center; justify-content: center; height: 48px; padding: 0 26px; border-radius: 12px; border: 1.5px solid #2e4a38; color: #eaf5ec; font-size: 15px; font-weight: 700; }
+  .btn-ghost:hover { color: #ffffff; text-decoration: none; border-color: #4b7a5c; }
+
+  footer { display: flex; align-items: center; justify-content: space-between; padding: 40px 0 44px 0; border-top: 1px solid #e0eae2; margin-top: 72px; gap: 16px; flex-wrap: wrap; }
+  footer .muted { font-size: 14px; color: #5c7365; }
+  footer .muted a { color: #5c7365; text-decoration: underline; }
+  footer nav { font-size: 14.5px; font-weight: 600; gap: 24px; }
+
+  @media (max-width: 900px) {
+    .cards { grid-template-columns: 1fr; margin-top: 52px; }
+    .hero { padding-top: 52px; }
+    header nav { display: none; }
+    .wave { height: 96px; margin-top: 40px; }
+    .server { flex-direction: column; align-items: flex-start; gap: 18px; padding: 26px; }
+    .server-left { flex-direction: column; align-items: flex-start; gap: 14px; }
+    .enth { flex-direction: column; align-items: flex-start; padding: 32px 28px; gap: 22px; }
+    .enth-links { flex-direction: row; width: 100%; }
+    .enth-links a { flex: 1; }
+    .cta { width: 100%; justify-content: center; }
+    .cta-row { width: 100%; }
+    footer { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <a class="logo" href="#">
+      <span class="logo-badge">
+        <svg width="23" height="23" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+          <rect x="1" y="8" width="3" height="6" rx="1.5" fill="url(#lg1)"></rect>
+          <rect x="6" y="4" width="3" height="14" rx="1.5" fill="url(#lg1)"></rect>
+          <rect x="11" y="1" width="3" height="20" rx="1.5" fill="url(#lg1)"></rect>
+          <rect x="16" y="6" width="3" height="10" rx="1.5" fill="url(#lg1)"></rect>
+          <defs><linearGradient id="lg1" x1="0" y1="0" x2="0" y2="22"><stop offset="0" stop-color="#a8e063"></stop><stop offset="1" stop-color="#1fa03a"></stop></linearGradient></defs>
+        </svg>
+      </span>
+      Гига Писарь
+    </a>
+    <nav>
+      <a href="#features">Возможности</a>
+      <a href="#how">Как это работает</a>
+      <a href="https://github.com/moznoazachem/giga">GitHub</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <span class="pill">Бесплатно · Открытый код · macOS 13.4+</span>
+    <h1>Зажми <span class="grad-text">⌘</span>. Скажи.<br><span class="grad-text">Отправляй.</span></h1>
+    <p class="sub">Диктовка для мака: зажал правый ⌘, сказал, отпустил.
+      Текст уже у курсора, в любом приложении.
+      Ты удивишься, насколько это мгновенно.</p>
+    <div class="cta-row">
+      <a class="cta" href="https://github.com/moznoazachem/giga/releases/latest">Скачать для macOS</a>
+      <a href="https://github.com/moznoazachem/giga" style="font-size: 16px; font-weight: 600;">Исходники →</a>
+    </div>
+    <div class="wave" aria-hidden="true">
+      <i style="height: 34px; background: linear-gradient(180deg, #a8e063, #1fa03a); animation-delay: -0.2s;"></i>
+      <i style="height: 62px; background: linear-gradient(180deg, #a8e063, #1fa03a); animation-delay: -0.5s;"></i>
+      <i style="height: 96px; background: linear-gradient(180deg, #9adf55, #17963f); animation-delay: -0.9s;"></i>
+      <i style="height: 128px; background: linear-gradient(180deg, #8ad84c, #10884a); animation-delay: -0.1s;"></i>
+      <i style="height: 88px; background: linear-gradient(180deg, #7fd648, #0e9367); animation-delay: -0.7s;"></i>
+      <i style="height: 118px; background: linear-gradient(180deg, #63cf62, #009b82); animation-delay: -0.4s;"></i>
+      <i style="height: 74px; background: linear-gradient(180deg, #4fc884, #00a08c); animation-delay: -1.1s;"></i>
+      <i style="height: 104px; background: linear-gradient(180deg, #3fc39b, #00a08c); animation-delay: -0.3s;"></i>
+      <i style="height: 56px; background: linear-gradient(180deg, #38bfa5, #008f92); animation-delay: -0.8s;"></i>
+      <i style="height: 30px; background: linear-gradient(180deg, #35bcb0, #008699); animation-delay: -0.6s;"></i>
+    </div>
+  </section>
+
+  <section class="cards" id="how">
+    <div class="card">
+      <div class="art"><span class="keycap">⌘</span></div>
+      <h3>1. Зажми</h3>
+      <p>Правый ⌘ работает как рация. Никаких окон и кнопок: рука уже на клавиатуре.</p>
+    </div>
+    <div class="card">
+      <div class="art">
+        <span class="minibar" style="height: 18px; background: linear-gradient(180deg, #a8e063, #1fa03a);"></span>
+        <span class="minibar" style="height: 34px; background: linear-gradient(180deg, #9adf55, #17963f);"></span>
+        <span class="minibar" style="height: 46px; background: linear-gradient(180deg, #8ad84c, #10884a);"></span>
+        <span class="minibar" style="height: 28px; background: linear-gradient(180deg, #63cf62, #009b82);"></span>
+        <span class="minibar" style="height: 40px; background: linear-gradient(180deg, #4fc884, #00a08c);"></span>
+        <span class="minibar" style="height: 20px; background: linear-gradient(180deg, #38bfa5, #008f92);"></span>
+      </div>
+      <h3>2. Скажи</h3>
+      <p>Говори как говоришь. Рядом с курсором пляшет волна: Писарь слушает.</p>
+    </div>
+    <div class="card">
+      <div class="art"><span class="typefield">Привет, это я тебе надиктовал<span class="caret"></span></span></div>
+      <h3>3. Отправляй</h3>
+      <p>Отпустил кнопку, и текст уже вставлен. С пунктуацией и заглавными, готов к отправке.</p>
+    </div>
+  </section>
+
+  <section class="cards" id="features" style="margin-top: 22px;">
+    <div class="card dark">
+      <h3>Мгновенно</h3>
+      <p>Быстрее любых аналогов, что мы пробовали: отпустил кнопку, и текст уже на месте.</p>
+    </div>
+    <div class="card">
+      <h3>Всё у тебя на маке</h3>
+      <p>Распознавание локальное: голос никуда не отправляется. Ни облаков, ни подписок. Работает даже без интернета.</p>
+    </div>
+    <div class="card">
+      <h3>Видеокарту не трогает</h3>
+      <p>Работает на процессоре и не жрёт ресурсы. Хоть игра, хоть монтаж, хоть рендер: Писарь не помешает.</p>
+    </div>
+    <div class="card">
+      <h3>Точность, от которой офигеешь</h3>
+      <p>Модель <a href="https://developers.sber.ru/kak-v-sbere/culture/gigaAM-v3">GigaAM</a> обучена специально под русский: знаки препинания и заглавные сами, ошибок меньше, чем у Whisper.</p>
+    </div>
+    <div class="card">
+      <h3>Везде, где курсор</h3>
+      <p>Мессенджер, документы, код, поиск: вставляет в любое приложение. А если курсор был не в поле, текст ждёт в буфере.</p>
+    </div>
+    <div class="card">
+      <h3>Сам обновляется</h3>
+      <p>Новые версии приезжают с двух зеркал (GitHub и GitFlic) и ставятся в один клик. Работает и без VPN.</p>
+    </div>
+  </section>
+
+  <section class="server">
+    <div class="server-left">
+      <span class="term">$ pisar голосовое.ogg</span>
+      <div>
+        <h3>Нужно на сервере?</h3>
+        <p>Тот же движок консольной командой для Linux: боты, файлы, потоки. Так же офлайн, так же без GPU.</p>
+      </div>
+    </div>
+    <a class="btn-outline" href="https://github.com/moznoazachem/giga-pisar">giga-pisar →</a>
+  </section>
+
+  <section class="enth">
+    <div>
+      <h2>Сделано энтузиастами.<br>Без коммерции.</h2>
+      <p>Ни подписки, ни рекламы, ни сбора данных. Просто захотелось, чтобы на маке была
+        нормальная русская диктовка. Весь исходный код открыт: смотри, проверяй, собирай сам.
+        Пользуйся и кайфуй.</p>
+    </div>
+    <div class="enth-links">
+      <a class="btn-white" href="https://github.com/moznoazachem/giga">GitHub</a>
+      <a class="btn-ghost" href="https://gitflic.ru/project/moznoazachem/giga">GitFlic</a>
+      <a class="btn-ghost" href="https://sourcecraft.dev/moznoazachem/giga">SourceCraft</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="muted">Гига Писарь · Открытый код · MIT · На модели <a href="https://developers.sber.ru/kak-v-sbere/culture/gigaAM-v3">GigaAM v3 от Сбера</a></div>
+    <nav>
+      <a href="https://github.com/moznoazachem/giga">GitHub</a>
+      <a href="https://gitflic.ru/project/moznoazachem/giga">GitFlic</a>
+      <a href="https://sourcecraft.dev/moznoazachem/giga">SourceCraft</a>
+    </nav>
+  </footer>
+
+</div>
+</body>
+</html>
