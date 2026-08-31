@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Гига Писарь: диктовка голосом для macOS</title>
-<meta name="description" content="Зажми правый ⌘, скажи, отпусти. Текст уже у курсора. Русская диктовка на модели GigaAM v3, целиком на твоём маке: офлайн, бесплатно, открытый код.">
+<meta name="description" content="Зажми правый ⌘, скажи, отпусти. Текст уже у курсора. Русская диктовка на модели GigaAM v3, целиком на твоём маке: офлайн, бесплатно, открытый код. А локальная нейронка причешет текст по команде «Писарь, исправь».">
 <meta property="og:title" content="Гига Писарь: диктовка голосом для macOS">
 <meta property="og:description" content="Зажми. Скажи. Отправляй. Русская диктовка на модели GigaAM v3, целиком на твоём маке.">
 <meta name="theme-color" content="#178a3c">
@@ -52,6 +52,16 @@
   @keyframes caret { 0% { opacity: 1; } 49% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 0; } }
   .caret { display: inline-block; width: 2px; height: 18px; background: #178a3c; margin-left: 2px; animation: caret 1.1s step-start infinite; }
 
+  .brain { margin-top: 26px; background: linear-gradient(115deg, #0d1512, #123322); border-radius: 26px; padding: 48px 56px; display: flex; align-items: center; justify-content: space-between; gap: 48px; }
+  .brain .pill { background: #1c3527; color: #a8e063; }
+  .brain h2 { font-size: clamp(24px, 3vw, 34px); font-weight: 800; color: #ffffff; letter-spacing: -0.02em; line-height: 1.15; margin: 16px 0 0 0; }
+  .brain p { font-size: 16px; line-height: 1.6; color: #a9c4af; margin: 14px 0 0 0; max-width: 620px; }
+  .brain .say { color: #a8e063; font-weight: 600; }
+  .brainmenu { flex-shrink: 0; font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 14px; background: #101c15; border: 1px solid #2e4a38; border-radius: 12px; padding: 14px 20px; box-shadow: 0 14px 34px rgba(0, 0, 0, 0.4); }
+  .brainmenu .bm-h { font-size: 11.5px; font-weight: 700; color: #5c7365; margin-bottom: 8px; }
+  .brainmenu .bm-row { padding: 4px 0; color: #cfe6d4; white-space: pre; }
+  .brainmenu .bm-row.sel { color: #38bfa5; }
+
   .server { margin-top: 26px; background: #ffffff; border: 1.5px solid #d6e4d8; border-radius: 20px; padding: 30px 36px; display: flex; align-items: center; justify-content: space-between; gap: 36px; }
   .server-left { display: flex; align-items: center; gap: 22px; }
   .term { font-family: ui-monospace, 'SF Mono', Menlo, monospace; font-size: 15px; background: #0d1512; color: #7cc93f; border-radius: 10px; padding: 12px 18px; white-space: nowrap; }
@@ -81,6 +91,8 @@
     .server { flex-direction: column; align-items: flex-start; gap: 18px; padding: 26px; }
     .server-left { flex-direction: column; align-items: flex-start; gap: 14px; }
     .enth { flex-direction: column; align-items: flex-start; padding: 32px 28px; gap: 22px; }
+    .brain { flex-direction: column; align-items: flex-start; padding: 32px 28px; gap: 26px; }
+    .brainmenu { font-size: 12.5px; max-width: 100%; }
     .enth-links { flex-direction: row; flex-wrap: wrap; width: 100%; }
     .enth-links a { flex: 1 1 45%; padding: 0 12px; }
     .term { font-size: 13px; max-width: 100%; }
@@ -187,6 +199,26 @@
     <div class="card">
       <h3>Сам обновляется</h3>
       <p>Новые версии приезжают с двух зеркал (GitHub и GitFlic) и ставятся в один клик. Работает и без VPN.</p>
+    </div>
+  </section>
+
+  <section class="brain">
+    <div>
+      <span class="pill">Новое в версии 3.0</span>
+      <h2>Теперь с мозгом</h2>
+      <p>Скажи в конце диктовки: <span class="say">«Писарь, исправь»</span>.
+        Локальная нейронка уберёт эканья и оговорки, расставит запятые,
+        соберёт поток мыслей в чёткий текст или переведёт на английский.
+        Вставится уже готовое.</p>
+      <p>Не сказал команду? После вставки у курсора всплывает менюшка: жми цифру.
+        Нейронка тоже живёт на твоём маке: GigaChat от Сбера или лёгкая Qwen,
+        качаются прямо из меню. В интернет по-прежнему ничего не уходит.</p>
+    </div>
+    <div class="brainmenu" aria-hidden="true">
+      <div class="bm-h">Писарь: нажми цифру                ✕</div>
+      <div class="bm-row sel">❯ 1. Собрать в чёткую мысль</div>
+      <div class="bm-row">  2. Сократить</div>
+      <div class="bm-row">  3. Перевести на английский</div>
     </div>
   </section>
 
