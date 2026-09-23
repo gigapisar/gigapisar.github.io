@@ -3,9 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Гига Писарь: диктовка голосом для macOS</title>
+<title>Гига Писарь: диктовка голосом для macOS и Windows</title>
 <meta name="description" content="Зажми правый ⌘, скажи, отпусти. Текст уже у курсора. Русская диктовка на модели GigaAM v3, целиком на твоём маке: офлайн, бесплатно, открытый код. А локальная нейронка причешет текст по команде «Писарь, исправь».">
-<meta property="og:title" content="Гига Писарь: диктовка голосом для macOS">
+<meta property="og:title" content="Гига Писарь: диктовка голосом для macOS и Windows">
 <meta property="og:description" content="Зажми. Скажи. Отправляй. Русская диктовка на модели GigaAM v3, целиком на твоём маке.">
 <meta name="theme-color" content="#178a3c">
 <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%2064%2064'%3E%3Crect%20width='64'%20height='64'%20rx='14'%20fill='%230d1512'/%3E%3Crect%20x='10'%20y='26'%20width='7'%20height='16'%20rx='3.5'%20fill='%23a8e063'/%3E%3Crect%20x='21'%20y='16'%20width='7'%20height='34'%20rx='3.5'%20fill='%237cc93f'/%3E%3Crect%20x='32'%20y='8'%20width='7'%20height='48'%20rx='3.5'%20fill='%231fa03a'/%3E%3Crect%20x='43'%20y='20'%20width='7'%20height='26'%20rx='3.5'%20fill='%2300a08c'/%3E%3C/svg%3E">
@@ -24,7 +24,7 @@
   header { display: flex; align-items: center; justify-content: space-between; padding-top: 28px; }
   .logo { display: flex; align-items: center; gap: 12px; font-weight: 700; font-size: 20px; letter-spacing: -0.01em; color: #10231a; }
   .logo:hover { text-decoration: none; }
-  .logo-badge { width: 42px; height: 42px; border-radius: 12px; background: #0d1512; display: flex; align-items: center; justify-content: center; }
+  .logo-badge { width: 42px; height: 42px; display: flex; align-items: center; justify-content: center; }
   nav { display: flex; gap: 30px; font-size: 15px; font-weight: 500; }
 
   .hero { display: flex; flex-direction: column; align-items: center; text-align: center; padding-top: 84px; }
@@ -34,6 +34,13 @@
   .cta-row { display: flex; align-items: center; gap: 18px; margin-top: 36px; flex-wrap: wrap; justify-content: center; }
   .cta { display: inline-flex; align-items: center; height: 56px; padding: 0 32px; border-radius: 14px; background: linear-gradient(100deg, #2ab54a, #178a3c); color: #ffffff; font-size: 17px; font-weight: 700; box-shadow: 0 10px 24px rgba(23, 138, 60, 0.28); }
   .cta:hover { color: #ffffff; text-decoration: none; filter: brightness(1.06); }
+  .cta-alt { background: #ffffff; color: #178a3c; border: 1.5px solid #178a3c; box-shadow: none; }
+  .cta-alt:hover { color: #0d5f28; filter: none; background: #f0f8f2; }
+  .beta { margin-left: 10px; font-size: 12px; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase; background: #e4f3e6; color: #178a3c; border-radius: 999px; padding: 4px 10px; }
+  .cta-primary-win #dl-win { background: linear-gradient(100deg, #2ab54a, #178a3c); color: #ffffff; border: 0; box-shadow: 0 10px 24px rgba(23, 138, 60, 0.28); }
+  .cta-primary-win #dl-mac { background: #ffffff; color: #178a3c; border: 1.5px solid #178a3c; box-shadow: none; }
+  .cta-primary-win #dl-win .beta { background: rgba(255, 255, 255, 0.22); color: #ffffff; }
+  .note { font-size: 14px; color: #5c7365; margin: 14px 0 0 0; max-width: 640px; line-height: 1.5; }
 
   @keyframes sway { 0% { transform: scaleY(0.72); } 50% { transform: scaleY(1); } 100% { transform: scaleY(0.72); } }
   .wave { display: flex; align-items: center; gap: 7px; height: 140px; margin-top: 56px; }
@@ -109,12 +116,17 @@
   <header>
     <a class="logo" href="#">
       <span class="logo-badge">
-        <svg width="23" height="23" viewBox="0 0 22 22" fill="none" aria-hidden="true">
+        <svg width="34" height="34" viewBox="0 0 22 22" fill="none" aria-hidden="true">
           <rect x="1" y="8" width="3" height="6" rx="1.5" fill="url(#lg1)"></rect>
-          <rect x="6" y="4" width="3" height="14" rx="1.5" fill="url(#lg1)"></rect>
-          <rect x="11" y="1" width="3" height="20" rx="1.5" fill="url(#lg1)"></rect>
-          <rect x="16" y="6" width="3" height="10" rx="1.5" fill="url(#lg1)"></rect>
-          <defs><linearGradient id="lg1" x1="0" y1="0" x2="0" y2="22"><stop offset="0" stop-color="#a8e063"></stop><stop offset="1" stop-color="#1fa03a"></stop></linearGradient></defs>
+          <rect x="6" y="4" width="3" height="14" rx="1.5" fill="url(#lg2)"></rect>
+          <rect x="11" y="1" width="3" height="20" rx="1.5" fill="url(#lg3)"></rect>
+          <rect x="16" y="6" width="3" height="10" rx="1.5" fill="url(#lg4)"></rect>
+          <defs>
+            <linearGradient id="lg1" x1="0" y1="0" x2="0" y2="22"><stop offset="0" stop-color="#a8e063"></stop><stop offset="1" stop-color="#1fa03a"></stop></linearGradient>
+            <linearGradient id="lg2" x1="0" y1="0" x2="0" y2="22"><stop offset="0" stop-color="#8ad84c"></stop><stop offset="1" stop-color="#10884a"></stop></linearGradient>
+            <linearGradient id="lg3" x1="0" y1="0" x2="0" y2="22"><stop offset="0" stop-color="#63cf62"></stop><stop offset="1" stop-color="#009b82"></stop></linearGradient>
+            <linearGradient id="lg4" x1="0" y1="0" x2="0" y2="22"><stop offset="0" stop-color="#38bfa5"></stop><stop offset="1" stop-color="#008f92"></stop></linearGradient>
+          </defs>
         </svg>
       </span>
       Гига Писарь
@@ -127,15 +139,17 @@
   </header>
 
   <section class="hero">
-    <span class="pill">Бесплатно · Открытый код · macOS 13.4+</span>
+    <span class="pill">Бесплатно · Открытый код · macOS 13.4+ · Windows 10/11</span>
     <h1>Зажми <span class="grad-text">⌘</span>. Скажи.<br><span class="grad-text">Отправляй.</span></h1>
-    <p class="sub">Диктовка для мака: зажал правый ⌘, сказал, отпустил.
+    <p class="sub">Диктовка голосом: зажал правый ⌘ на маке или правый Ctrl на Windows, сказал, отпустил.
       Текст уже у курсора, в любом приложении.
       Ты удивишься, насколько это мгновенно.</p>
     <div class="cta-row">
-      <a class="cta" href="https://github.com/moznoazachem/giga-pisar/releases/latest/download/GigaPisar.dmg">Скачать для macOS</a>
+      <a class="cta" id="dl-mac" href="https://github.com/moznoazachem/giga-pisar/releases/latest/download/GigaPisar.dmg">Скачать для macOS</a>
+      <a class="cta cta-alt" id="dl-win" href="https://github.com/moznoazachem/giga-pisar-win/releases/latest/download/GigaPisar-Setup.exe">Скачать для Windows <span class="beta">бета</span></a>
       <a href="https://github.com/moznoazachem/giga-pisar" style="font-size: 16px; font-weight: 600;">Исходники →</a>
     </div>
+    <p class="note" id="win-note">Версия для Windows только вышла и обкатывается. При запуске установщика Windows покажет окно «Система защитила ваш компьютер»: нажмите «Подробнее», затем «Выполнить в любом случае». Подпись разработчика в работе.</p>
     <div class="wave" aria-hidden="true">
       <i style="height: 34px; background: linear-gradient(180deg, #a8e063, #1fa03a); animation-delay: -0.2s;"></i>
       <i style="height: 62px; background: linear-gradient(180deg, #a8e063, #1fa03a); animation-delay: -0.5s;"></i>
@@ -154,7 +168,7 @@
     <div class="card">
       <div class="art"><span class="keycap">⌘</span></div>
       <h3>1. Зажми</h3>
-      <p>Правый ⌘ работает как рация. Никаких окон и кнопок: рука уже на клавиатуре.</p>
+      <p>Правый ⌘ на маке или правый Ctrl на Windows работает как рация. Никаких окон и кнопок: рука уже на клавиатуре.</p>
     </div>
     <div class="card">
       <div class="art">
@@ -181,7 +195,7 @@
       <p>Быстрее любых аналогов, что мы пробовали: отпустил кнопку, и текст уже на месте.</p>
     </div>
     <div class="card">
-      <h3>Всё у тебя на маке</h3>
+      <h3>Всё у тебя на компьютере</h3>
       <p>Распознавание локальное: голос никуда не отправляется. Ни облаков, ни подписок. Работает даже без интернета.</p>
     </div>
     <div class="card">
@@ -257,5 +271,15 @@
   </footer>
 
 </div>
+<script>
+  // Visitors on Windows get the Windows button first; everyone else sees the mac button first.
+  if (/Windows/i.test(navigator.userAgent)) {
+    document.querySelector('.cta-row').classList.add('cta-primary-win');
+    var row = document.querySelector('.cta-row');
+    row.insertBefore(document.getElementById('dl-win'), document.getElementById('dl-mac'));
+  } else {
+    document.getElementById('win-note').style.display = 'none';
+  }
+</script>
 </body>
 </html>
