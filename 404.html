@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Гига Писарь</title>
+<script>
+  // Some sites encode "#" in links (/%23android): send such visitors to the right section.
+  var p = decodeURIComponent(location.pathname);
+  var i = p.indexOf('#');
+  location.replace('/' + (i >= 0 ? p.slice(i) : ''));
+</script>
+</head>
+<body><a href="/">gigapisar.github.io</a></body>
+</html>
