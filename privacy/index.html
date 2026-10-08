@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Конфиденциальность · Гига Писарь</title>
+<meta name="description" content="Какие данные использует Гига Писарь и куда они уходят.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Onest:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: 'Onest', 'Helvetica Neue', Arial, sans-serif; background: #f6f9f6; color: #10231a; }
+  a { color: #178a3c; text-decoration: none; }
+  a:hover { color: #0d5f28; text-decoration: underline; }
+  .wrap { max-width: 820px; margin: 0 auto; padding: 32px 24px 64px; }
+  .back { font-size: 15px; font-weight: 500; }
+  .card { margin-top: 22px; background: #ffffff; border-radius: 28px; padding: 40px 44px; box-shadow: 0 1px 0 rgba(16, 35, 26, 0.04); }
+  h1 { font-size: clamp(30px, 5vw, 42px); letter-spacing: -0.02em; margin: 0 0 6px; }
+  .date { color: #5b7065; font-size: 15px; margin: 0 0 26px; }
+  h2 { font-size: 21px; letter-spacing: -0.01em; margin: 30px 0 8px; }
+  p, li { font-size: 16.5px; line-height: 1.6; color: #24392e; }
+  ul { padding-left: 22px; margin: 8px 0; }
+  li { margin: 6px 0; }
+  .lang { margin-top: 44px; padding-top: 30px; border-top: 1px solid #e4ece6; }
+  @media (max-width: 600px) { .card { padding: 28px 22px; border-radius: 22px; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="/">← Гига Писарь</a>
+  <div class="card">
+    <h1>Конфиденциальность</h1>
+    <p class="date">Действует с 8 октября 2026 года. Относится к Гига Писарю для macOS, Windows и Android. <a href="#en">English below</a></p>
+
+    <p>Гига Писарь переводит вашу речь в текст прямо на устройстве. У нас нет серверов, учётных записей, рекламы и аналитики. Мы не собираем о вас никаких данных.</p>
+
+    <h2>Микрофон и речь</h2>
+    <p>Писарь записывает звук только пока вы держите кнопку записи (или включили запись без рук). Речь распознаётся на вашем устройстве. Звук никуда не отправляется и не сохраняется после распознавания.</p>
+
+    <h2>Специальные возможности</h2>
+    <p>На Android Писарь использует службу специальных возможностей, а на macOS разрешение «Универсальный доступ», чтобы:</p>
+    <ul>
+      <li>показывать кнопку микрофона, когда открыто поле ввода;</li>
+      <li>узнавать, что вы зажали кнопку записи;</li>
+      <li>вставлять надиктованный текст туда, где стоит курсор.</li>
+    </ul>
+    <p>Для этого Писарь видит, какое поле ввода сейчас открыто и что в нём написано. Эти данные не сохраняются и никуда не отправляются. Перед включением службы на Android Писарь объясняет это и спрашивает согласие.</p>
+
+    <h2>Буфер обмена</h2>
+    <p>Если поле не принимает текст напрямую, Писарь вставляет его через буфер обмена и потом возвращает туда то, что было раньше. Содержимое буфера никуда не отправляется.</p>
+
+    <h2>Мозг в облаке (по желанию)</h2>
+    <p>Если вы сами включите облачный Мозг и вставите ключ выбранного сервиса (например, DeepSeek, OpenAI или своего сервера), надиктованный текст уходит на этот сервис для правки. Звук туда не уходит. Ключ хранится только на вашем устройстве (в Связке ключей macOS, защищённом хранилище Windows или Android). На передачу текста действуют правила выбранного вами сервиса. На Android в полях паролей Мозг не работает. Без вашего включения Мозг в облаке не используется.</p>
+
+    <h2>Сеть</h2>
+    <p>Писарь выходит в интернет, чтобы скачать модель распознавания (с GitHub, GitFlic или Hugging Face) и проверить, нет ли новой версии. При этом передаются только обычные данные любого скачивания, например IP-адрес, которые видит сайт, откуда идёт загрузка. Никаких сведений о вас и вашем тексте Писарь не передаёт.</p>
+
+    <h2>Дети</h2>
+    <p>Писарь не предназначен специально для детей и не собирает данные ни о ком.</p>
+
+    <h2>Изменения и вопросы</h2>
+    <p>Если правила изменятся, новая версия появится на этой странице с новой датой. Вопросы можно задать на <a href="https://github.com/moznoazachem/giga-pisar/issues">GitHub</a>. Исходный код Писаря открыт, и всё описанное можно проверить.</p>
+
+    <div class="lang" id="en">
+      <h1>Privacy</h1>
+      <p class="date">Effective October 8, 2026. Applies to Giga Pisar for macOS, Windows and Android.</p>
+
+      <p>Giga Pisar turns your speech into text right on the device. We have no servers, accounts, ads or analytics. We collect no data about you.</p>
+
+      <h2>Microphone and speech</h2>
+      <p>Pisar records sound only while you hold the record button (or turned on hands-free recording). Speech is recognized on your device. Audio is not sent anywhere and is not kept after recognition.</p>
+
+      <h2>Accessibility</h2>
+      <p>On Android Pisar uses an accessibility service, and on macOS the Accessibility permission, to:</p>
+      <ul>
+        <li>show the microphone button when a text field is open;</li>
+        <li>notice that you hold the record key;</li>
+        <li>put the dictated text where the cursor is.</li>
+      </ul>
+      <p>For this Pisar sees which text field is open and what is written in it. This is not stored and not sent anywhere. Before the service is turned on, Pisar for Android explains this and asks for consent.</p>
+
+      <h2>Clipboard</h2>
+      <p>When a field does not take text directly, Pisar pastes through the clipboard and then puts back what was there before. Clipboard contents are not sent anywhere.</p>
+
+      <h2>Cloud Brain (optional)</h2>
+      <p>If you turn on the cloud Brain and add a key for a service of your choice (for example DeepSeek, OpenAI or your own server), the dictated text goes to that service to be edited. Audio does not. The key stays on your device (macOS Keychain, Windows or Android protected storage). The chosen service's own terms apply to the text. On Android the Brain never works in password fields. It is not used unless you turn it on.</p>
+
+      <h2>Network</h2>
+      <p>Pisar goes online to download the speech model (from GitHub, GitFlic or Hugging Face) and to check for a new version. Only what any download carries is sent, such as the IP address seen by the download site. Nothing about you or your text is sent.</p>
+
+      <h2>Children</h2>
+      <p>Pisar is not directed at children and collects data about no one.</p>
+
+      <h2>Changes and questions</h2>
+      <p>If these rules change, the new version will appear on this page with a new date. Questions are welcome on <a href="https://github.com/moznoazachem/giga-pisar/issues">GitHub</a>. Pisar is open source, so all of the above can be checked.</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
