@@ -125,7 +125,19 @@
   footer .muted a { color: #5c7365; text-decoration: underline; }
   footer nav { font-size: 14.5px; font-weight: 600; gap: 24px; }
 
+  .reads { margin-top: 84px; }
+  .reads-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .reads-head h2 { margin: 0; font-size: 34px; letter-spacing: -0.02em; }
+  .reads-head p { margin: 8px 0 0; font-size: 16px; color: #3d5548; }
+  .reads-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 22px; margin-top: 28px; }
+  .read { display: flex; flex-direction: column; gap: 12px; background: #ffffff; border-radius: 20px; padding: 26px 28px; box-shadow: 0 2px 14px rgba(16, 35, 26, 0.06); color: #10231a; }
+  .read:hover { text-decoration: none; color: #10231a; box-shadow: 0 6px 22px rgba(16, 35, 26, 0.12); }
+  .read .tag { align-self: flex-start; font-size: 12.5px; font-weight: 700; color: #178a3c; background: #e4f3e6; border-radius: 999px; padding: 4px 11px; }
+  .read h3 { margin: 0; font-size: 18px; line-height: 1.35; font-weight: 700; }
+  .read .more { margin-top: auto; font-size: 14.5px; font-weight: 600; color: #178a3c; }
   @media (max-width: 900px) {
+    .reads-grid { grid-template-columns: 1fr; }
+    .reads-head h2 { font-size: 28px; }
     .cards { grid-template-columns: 1fr; margin-top: 52px; }
     .hero { padding-top: 52px; }
     header nav { display: none; }
@@ -169,6 +181,7 @@
     <nav>
       <a href="#features">Возможности</a>
       <a href="#how">Как это работает</a>
+      <a href="#habr">Статьи</a>
       <a href="https://github.com/moznoazachem/giga-pisar">GitHub</a>
     </nav>
   </header>
@@ -336,6 +349,33 @@
       </div>
     </div>
     <a class="btn-outline" href="https://github.com/moznoazachem/giga-pisar-cli">giga-pisar →</a>
+  </section>
+
+  <section class="reads" id="habr">
+    <div class="reads-head">
+      <div>
+        <h2>Читать на Хабре</h2>
+        <p>Как всё устроено, что нового и живое обсуждение в комментариях.</p>
+      </div>
+      <a class="btn-outline" href="https://habr.com/ru/companies/gigapisar/articles/">Все статьи →</a>
+    </div>
+    <div class="reads-grid">
+      <a class="read" href="https://habr.com/ru/companies/gigapisar/articles/1080986/">
+        <span class="tag">macOS</span>
+        <h3>Whisper больше не нужен, русская диктовка мгновенно и без видеокарты</h3>
+        <span class="more">Читать и обсудить →</span>
+      </a>
+      <a class="read" href="https://habr.com/ru/companies/gigapisar/news/1086374/">
+        <span class="tag">Windows</span>
+        <h3>Гига Писарь теперь и на Windows</h3>
+        <span class="more">Читать и обсудить →</span>
+      </a>
+      <a class="read" href="https://habr.com/ru/companies/gigapisar/articles/1089818/">
+        <span class="tag">Android</span>
+        <h3>Если у вас Android, жизнь стала чуточку легче</h3>
+        <span class="more">Читать и обсудить →</span>
+      </a>
+    </div>
   </section>
 
   <section class="enth">
