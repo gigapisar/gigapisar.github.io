@@ -200,7 +200,6 @@
     </div>
     <p class="note" id="win-note">Версия для Windows только вышла и обкатывается. При запуске установщика Windows покажет окно «Система защитила ваш компьютер»: нажмите «Подробнее», затем «Выполнить в любом случае».</p>
     <p class="note" id="android-note">Для Android: скачайте файл и откройте его. Телефон спросит разрешение устанавливать приложения и может предупредить, что приложение неизвестное: это нормально для программ не из Google Play. <a href="#android">Как установить, по шагам →</a></p>
-    <p class="note" id="sign-note">Подпись установщика для Windows подключается бесплатно через <a href="https://signpath.io">SignPath.io</a>, сертификат <a href="https://signpath.org">SignPath Foundation</a>.</p>
     <div class="wave" aria-hidden="true">
       <i style="height: 34px; background: linear-gradient(180deg, #a8e063, #1fa03a); animation-delay: -0.2s;"></i>
       <i style="height: 62px; background: linear-gradient(180deg, #a8e063, #1fa03a); animation-delay: -0.5s;"></i>
@@ -410,7 +409,6 @@
     r.classList.add('cta-primary-android');
     r.insertBefore(document.getElementById('dl-android'), document.getElementById('dl-mac'));
     document.getElementById('win-note').style.display = 'none';
-    document.getElementById('sign-note').style.display = 'none';
   } else {
     document.getElementById('android-note').style.display = 'none';
   }
