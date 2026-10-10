@@ -135,6 +135,20 @@
   .read .tag { align-self: flex-start; font-size: 12.5px; font-weight: 700; color: #178a3c; background: #e4f3e6; border-radius: 999px; padding: 4px 11px; }
   .read h3 { margin: 0; font-size: 18px; line-height: 1.35; font-weight: 700; }
   .read .more { margin-top: auto; font-size: 14.5px; font-weight: 600; color: #178a3c; }
+  .play-dlg { border: 0; padding: 0; border-radius: 26px; max-width: 560px; width: calc(100% - 32px); box-shadow: 0 24px 60px rgba(16, 35, 26, 0.28); color: #10231a; }
+  .play-dlg::backdrop { background: rgba(10, 21, 18, 0.55); }
+  .play-in { padding: 34px 34px 28px; position: relative; }
+  .play-x { position: absolute; top: 14px; right: 14px; width: 38px; height: 38px; border: 0; border-radius: 50%; background: #f0f5f1; font-size: 20px; color: #3d5548; cursor: pointer; }
+  .play-in h2 { margin: 0 0 10px; font-size: 26px; letter-spacing: -0.02em; padding-right: 36px; }
+  .play-in p { margin: 0 0 14px; font-size: 15.5px; line-height: 1.55; color: #3d5548; }
+  .play-steps { margin: 18px 0 8px; padding: 0; list-style: none; display: grid; gap: 12px; counter-reset: st; }
+  .play-steps li { display: flex; gap: 12px; align-items: flex-start; font-size: 15px; line-height: 1.5; color: #24392e; counter-increment: st; }
+  .play-steps li::before { content: counter(st); flex: none; width: 26px; height: 26px; border-radius: 50%; background: #e4f3e6; color: #178a3c; font-weight: 700; font-size: 14px; display: grid; place-items: center; }
+  .play-steps a.pbtn { display: inline-flex; margin-top: 6px; height: 40px; align-items: center; padding: 0 16px; border-radius: 10px; background: linear-gradient(100deg, #2ab54a, #178a3c); color: #fff; font-weight: 700; font-size: 14.5px; }
+  .play-steps a.pbtn:hover { text-decoration: none; filter: brightness(1.06); }
+  .play-note { font-size: 13.5px !important; color: #5b7065 !important; }
+  .play-alt { margin-top: 18px; padding-top: 16px; border-top: 1px solid #e4ece6; font-size: 14.5px; color: #3d5548; }
+  @media (max-width: 600px) { .play-in { padding: 26px 20px 22px; } .play-in h2 { font-size: 22px; } }
   @media (max-width: 900px) {
     .reads-grid { grid-template-columns: 1fr; }
     .reads-head h2 { font-size: 28px; }
@@ -419,6 +433,32 @@
   } else if (!android) {
     document.getElementById('win-note').style.display = 'none';
   }
+</script>
+<dialog class="play-dlg" id="play-dlg">
+  <div class="play-in">
+    <button class="play-x" type="button" aria-label="Закрыть" onclick="document.getElementById('play-dlg').close()">×</button>
+    <h2>Писарь едет в Google Play</h2>
+    <p>Google уже проверил Писаря и пустил в закрытый тест. Чтобы его выпустили для всех и ставить можно было без файлов и предупреждений, Google просит 12 тестеров, которые пользуются приложением 14 дней подряд.</p>
+    <p>Если не сложно, станьте одним из них. Это пять шагов:</p>
+    <ol class="play-steps">
+      <li><div><b>Вступите в группу тестеров.</b> Нажмите кнопку, откроется страница группы Google. Нажмите на ней «Вступить в группу» (Join group). Если Google попросит войти, войдите в тот аккаунт, что стоит в Google Play на вашем телефоне.<br><a class="pbtn" href="https://groups.google.com/g/gigapisar-testers" target="_blank" rel="noopener">Открыть группу</a></div></li>
+      <li><div><b>Станьте тестировщиком.</b> Через минуту после вступления нажмите кнопку ниже. Откроется страница Google Play, на ней нажмите «Стать тестировщиком» (Become a tester). Появится надпись, что вы стали тестировщиком.<br><a class="pbtn" href="https://play.google.com/apps/testing/ru.gigapisar" target="_blank" rel="noopener">Открыть страницу теста</a></div></li>
+      <li><div><b>Установите Писаря.</b> На той же странице нажмите ссылку на Google Play и затем «Установить». Если Play пишет «Не найдено», подождите 15–30 минут: Google не сразу открывает приложение новым тестерам.</div></li>
+      <li><div><b>Настройте.</b> Откройте Писаря и пройдите три шага: микрофон, специальные возможности, загрузка модели.</div></li>
+      <li><div><b>Пользуйтесь две недели.</b> Хотя бы раз в день надиктуйте что-нибудь: сообщение, заметку, письмо. Не удаляйте приложение и не выходите из теста 14 дней, иначе Google вас не засчитает.</div></li>
+    </ol>
+    <p class="play-note">Главное: все шаги под одним аккаунтом Google, тем же, что в Google Play на телефоне. Если Писарь уже стоит с сайта, удалять не нужно, версия из Play встанет поверх.</p>
+    <div class="play-alt">Не хочется? <a id="play-apk" href="https://github.com/moznoazachem/giga-pisar-android/releases/latest/download/GigaPisar.apk">Скачать файл, как раньше</a> · <a href="#android" onclick="document.getElementById('play-dlg').close()">как установить</a></div>
+  </div>
+</dialog>
+<script>
+  // The Android button offers the Google Play test first; the file is one tap away.
+  (function () {
+    var b = document.getElementById('dl-android'), d = document.getElementById('play-dlg');
+    if (!b || !d || typeof d.showModal !== 'function') return;
+    b.addEventListener('click', function (e) { e.preventDefault(); d.showModal(); });
+    d.addEventListener('click', function (e) { if (e.target === d) d.close(); });
+  })();
 </script>
 </body>
 </html>
